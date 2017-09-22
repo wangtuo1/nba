@@ -1,0 +1,26 @@
+dataSource:
+  2016_2017: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/2016_2017
+    username: root
+    password: root
+  2015_2016: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/2015_2016
+    username: root
+    password: root
+    
+defaultDataSourceName: 2016_2017
+
+tables:    
+  game_movement: 
+    actualTables: 2016_2017.game_movement_${402891815e7a02f0015e7a02f5700006,402891815e7a02f0015e7a02f5750007,402891815e7a02f0015e7a02f57c0008,402891815e7a02f0015e7a02f5800009,402891815e7a02f0015e7a02f585000a,402891815e7a02f0015e7a02f589000b,402891815e7a02f0015e7a02f58e000c},2015_2016.game_movement_${402891815e7a02f0015e7a02f592000d,402891815e7a02f0015e7a02f597000e,402891815e7a02f0015e7a02f59d000f,402891815e7a02f0015e7a02f5a20010,402891815e7a02f0015e7a02f5a60011,402891815e7a02f0015e7a02f5ab0012,402891815e7a02f0015e7a02f5af0013}
+    databaseStrategy: 
+      shardingColumns: season_id
+      algorithmClassName: wangtuo.detail.config.strategy.SeasonDatabaseShardingStrategy
+    tableStrategy: 
+      shardingColumns: game_id
+      algorithmExpression: wangtuo.detail.config.strategy.GameTableShardingStrategy
+
+props:
+  sql.show: true
